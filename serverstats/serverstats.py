@@ -41,7 +41,7 @@ class ServerStats(commands.Cog):
     async def membercount(self, ctx, *, name: str=None):
         """Sets up the Member Count Voice Channel."""
 
-        name = name or "Member Count"
+        name = name or "Miembros"
         await self.create_channel(ctx, name, ctx.guild.member_count)
 
         self.db.find_one_and_update({"_id": "config"}, {"$set": {"mChannel": name}}, upsert=True)
@@ -51,7 +51,7 @@ class ServerStats(commands.Cog):
     async def rolecount(self, ctx, *, name: str=None):
         """Sets up the Role Count Voice Channel.""" 
 
-        name = name or "Role Count"
+        name = name or "Roles"
         await self.create_channel(ctx, name, len(ctx.guild.roles))
 
         self.db.find_one_and_update({"_id": "config"}, {"$set": {"rChannel": name}}, upsert=True)
@@ -61,7 +61,7 @@ class ServerStats(commands.Cog):
     async def channelcount(self, ctx, *, name: str=None):
         """Sets up the Channel Count Voice Channel"""
 
-        name = name or "Channel Count"
+        name = name or "Canales"
         await self.create_channel(ctx, name, len(ctx.guild.channels))
 
         self.db.find_one_and_update({"_id": "config"}, {"$set": {"cChannel": name}}, upsert=True)
@@ -71,7 +71,7 @@ class ServerStats(commands.Cog):
     async def totalhuman(self, ctx, *, name: str=None):
         """Sets up the Total Humans Voice Channel"""
 
-        name = name or "Total Humans"
+        name = name or "Humanos"
         humans = self.get_humans(ctx)
         await self.create_channel(ctx, name, int(humans))
 
@@ -82,7 +82,7 @@ class ServerStats(commands.Cog):
     async def totalbot(self, ctx, *, name: str=None):
         """Sets up the Total Bots Voice Channel"""
         
-        name = name or "Total Bots"
+        name = name or "Bots"
         bots = self.get_bots(ctx)
         await self.create_channel(ctx, name, int(bots))
 
